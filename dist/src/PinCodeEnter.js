@@ -16,34 +16,45 @@ class PinCodeEnter extends React.PureComponent {
             }
             this.setState({ pinCodeStatus: index_1.PinResultStatus.initial });
             this.props.changeInternalStatus(index_1.PinResultStatus.initial);
-            const pinAttemptsStr = await react_native_1.AsyncStorage.getItem(this.props.pinAttemptsAsyncStorageName);
-            let pinAttempts = +pinAttemptsStr;
-            const pin = this.props.storedPin || this.keyChainResult.password;
+            // const pinAttemptsStr = await react_native_1.AsyncStorage.getItem(this.props.pinAttemptsAsyncStorageName);
+            // let pinAttempts = +pinAttemptsStr;
+            // const pin = this.props.storedPin || this.keyChainResult.password;
+            const pin = this.props.storedPin;
             if (pin === pinCode) {
-                this.setState({ pinCodeStatus: index_1.PinResultStatus.success });
-                react_native_1.AsyncStorage.multiRemove([
-                    this.props.pinAttemptsAsyncStorageName,
-                    this.props.timePinLockedAsyncStorageName
-                ]);
+                // react_native_1.AsyncStorage.multiRemove([
+                    // this.props.pinAttemptsAsyncStorageName,
+                    // this.props.timePinLockedAsyncStorageName
+                // ]);
+                this.setState({ pinCodeStatus: index_1.PinResultStatus.success });                
                 this.props.changeInternalStatus(index_1.PinResultStatus.success);
+                setTimeout(() => {
+                    this.setState({ pinCodeStatus: index_1.PinResultStatus.initial });
+                    this.props.changeInternalStatus(index_1.PinResultStatus.initial);
+                },);
                 if (this.props.finishProcess)
                     this.props.finishProcess();
             }
             else {
-                pinAttempts++;
+                // pinAttempts++;
                 if (this.props.onFail) {
+                    // this.props.onFail(pinAttempts);
+                    let pinAttempts = 0;
                     this.props.onFail(pinAttempts);
                 }
-                if (+pinAttempts >= this.props.maxAttempts) {
-                    await react_native_1.AsyncStorage.setItem(this.props.timePinLockedAsyncStorageName, new Date().toISOString());
-                    this.setState({ locked: true, pinCodeStatus: index_1.PinResultStatus.locked });
-                    this.props.changeInternalStatus(index_1.PinResultStatus.locked);
-                }
-                else {
-                    await react_native_1.AsyncStorage.setItem(this.props.pinAttemptsAsyncStorageName, pinAttempts.toString());
+                // if (+pinAttempts >= this.props.maxAttempts) {
+                    // await react_native_1.AsyncStorage.setItem(this.props.timePinLockedAsyncStorageName, new Date().toISOString());
+                    // this.setState({ locked: true, pinCodeStatus: index_1.PinResultStatus.locked });
+                    // this.props.changeInternalStatus(index_1.PinResultStatus.locked);
+                // }
+                // else {
+                    // await react_native_1.AsyncStorage.setItem(this.props.pinAttemptsAsyncStorageName, pinAttempts.toString());
                     this.setState({ pinCodeStatus: index_1.PinResultStatus.failure });
                     this.props.changeInternalStatus(index_1.PinResultStatus.failure);
-                }
+                    setTimeout(() => {
+                        this.setState({ pinCodeStatus: index_1.PinResultStatus.initial });
+                        this.props.changeInternalStatus(index_1.PinResultStatus.initial);
+                    },);
+                // }
             }
         };
         this.state = { pinCodeStatus: index_1.PinResultStatus.initial, locked: false };

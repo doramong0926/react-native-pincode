@@ -1,8 +1,9 @@
 # react-native-pincode
 
-[![npm](https://img.shields.io/npm/v/@haskkor/react-native-pincode.svg)](https://www.npmjs.com/package/@haskkor/react-native-pincode) [![npm](https://img.shields.io/npm/dt/@haskkor/react-native-pincode.svg)](https://www.npmjs.com/package/@haskkor/react-native-pincode) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+[![npm](https://img.shields.io/npm/v/@doramong0926/react-native-pincode.svg)](https://www.npmjs.com/package/@doramong0926/react-native-pincode) [![npm](https://img.shields.io/npm/dt/@doramong0926/react-native-pincode.svg)](https://www.npmjs.com/package/@doramong0926/react-native-pincode) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 _A customizable PIN Code component for react native_
+This fork is for fix bug to use external secure storage for Expo
 
 Using:
 * _**[react-native-keychain](https://github.com/oblador/react-native-keychain)**_ to store the pin in Keychain/Keystore
@@ -13,11 +14,11 @@ Using:
 ## Installation
 
 ```
-npm install --save @haskkor/react-native-pincode
+npm install --save @doramong0926/react-native-pincode
 ```
 or
 ```
-yarn add @haskkor/react-native-pincode
+yarn add @doramong0926/react-native-pincode
 ```
 
 **Please note that:**
@@ -54,14 +55,14 @@ Basic usage requires choosing between the _**choose**_, _**enter**_ and _**locke
 * _**locked**_ : prints a locked screen for a given time if the user failed to enter his/her PIN code too many times
 
 ```
-import PINCode from '@haskkor/react-native-pincode'
+import PINCode from '@doramong0926/react-native-pincode'
 <PINCode status={'choose'}/>
 ```
 
 One can also use a provided promise to know if a PIN code has been set by the user.
 
 ```
-import {hasUserSetPinCode} from '@haskkor/react-native-pincode'
+import {hasUserSetPinCode} from '@doramong0926/react-native-pincode'
 await hasUserSetPinCode()
 ```
 
