@@ -1,5 +1,5 @@
 {
-  "name": "@doramong/react-native-pincode",
+  "name": "@doramong0926/react-native-pincode",
   "version": "1.0.0",
   "description": "This fork is for fix bug to use external secure storage for Expo",
   "main": "dist/index.js",
@@ -8,7 +8,7 @@
     "type": "git",
     "url": "git+https://github.com/doramong0926/react-native-pincode.git"
   },
-  "author": "Doramong0926",
+  "author": "doramong0926",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/doramong0926/react-native-pincode/issues"
